@@ -1,0 +1,84 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+*.whl
+.venv/
+venv/
+env/
+.python-version
+
+# =========================
+# Node.js / Next.js
+# =========================
+node_modules/
+.next/
+out/
+web/.next/
+web/node_modules/
+web/out/
+
+# =========================
+# Data & Models
+# =========================
+data/raw/
+data/processed/
+data/interim/
+*.csv
+*.parquet
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.joblib
+*.onnx
+mlruns/
+mlartifacts/
+
+# =========================
+# Environment & Secrets
+# =========================
+.env
+.env.local
+.env.production
+!.env.example
+
+# =========================
+# IDE & OS
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =========================
+# Docker
+# =========================
+docker-compose.override.yml
+
+# =========================
+# Testing & Coverage
+# =========================
+.coverage
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# =========================
+# Logs
+# =========================
+*.log
+logs/
