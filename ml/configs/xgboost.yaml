@@ -1,0 +1,15 @@
+# XGBoost default hyperparameters for CSE-CIC-IDS2018
+# 14 attack classes + 1 Benign = 15 classes
+
+objective: "multi:softprob"
+eval_metric: mlogloss
+num_class: 15
+learning_rate: 0.05
+max_depth: 8
+min_child_weight: 5
+subsample: 0.8
+colsample_bytree: 0.8
+n_estimators: 500
+tree_method: hist
+verbosity: 0
+random_state: 42
