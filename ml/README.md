@@ -29,20 +29,18 @@ ml/
     └── test_models.py           # Model & metrics tests
 ```
 
-## Quick Start
+### 1. Synchronize the workspace
 
-### 1. Install dependencies
-
+From the project root directory, synchronize all workspace dependencies (which sets up a unified `.venv/` virtual environment):
 ```bash
-cd ml
-pip install -e ".[dev]"
+uv sync
 ```
 
 ### 2. Run tests
 
+Execute the ML test suite using the `uv` environment runner:
 ```bash
-cd ml
-pytest tests/ -v --tb=short
+uv run pytest ml/tests/ -v --tb=short
 ```
 
 ### 3. Train a model

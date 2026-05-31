@@ -84,14 +84,21 @@ Format: `<type>(<scope>): <short summary>` (followed by optional body/footer).
 ## 💻 Code Standards & Quality Guidelines
 
 ### 🐍 Python Guidelines (`ml/` & `api/`)
+- **Environment Management**: We use [uv](https://github.com/astral-sh/uv) to manage workspace environments and lock files.
+  - **Setup**: Run `uv sync` at the monorepo root to automatically bootstrap the unified workspace environment (`.venv/` in the root).
+  - **Adding Dependencies**: Use the workspace package targets:
+    - Add to ML pipeline: `uv add --package nids-ml <package>`
+    - Add to API backend: `uv add --package nids-api <package>`
+    - Add development dependencies: `uv add --package nids-api --dev <package>`
+  - **Synchronization**: If dependencies in any member `pyproject.toml` are modified, sync the environment by running `uv sync` from anywhere in the project.
 - **Coding Style**: Conform to [PEP 8](https://peps.python.org/pep-0008/).
 - **Formatting**: We use [Black](https://github.com/psf/black) with default settings (line length 88) for deterministic code formatting.
 - **Type Annotations**: Apply strong static type hints to all function signatures (`typing` module / native types).
 - **Asynchronous Operations**: Backend endpoints in `api/` must leverage `async`/`await` paradigms for all database and remote resource interactions.
 - **Unit Testing**: 
   - Every new module must include companion tests under the `tests/` directory.
-  - Run ML tests using: `pytest ml/tests/`
-  - Run API tests using: `pytest api/tests/`
+  - Run ML tests using: `uv run pytest ml/tests/`
+  - Run API tests using: `uv run pytest api/tests/`
 
 ### ⚛️ Next.js & TypeScript Guidelines (`web/`)
 - **Coding Style**: ESLint configured with the default Next.js configuration.

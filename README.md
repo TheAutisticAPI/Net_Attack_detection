@@ -1,4 +1,4 @@
-# TheAutisticNIDS — Network Intrusion Detection System
+# TheAutisticNIDS: Network Intrusion Detection System
 
 An **ML-powered network intrusion detection system** that enriches Suricata/Snort alerts with explainability (SHAP), anomaly detection (Isolation Forest), and concept drift awareness (ADWIN). Designed as a downstream ML enrichment layer, not a replacement for signature-based detection.
 
@@ -88,19 +88,18 @@ cp .env.example .env
 # Start the full stack
 docker-compose up
 
-# Or run services individually:
+# Or run services individually (using uv workspace):
 
-# ML track
-cd ml
-pip install -e ".[dev]"
-pytest
+# 1. Synchronize the monorepo workspace dependencies
+uv sync
 
-# API
-cd api
-pip install -e ".[dev]"
-uvicorn app.main:app --reload
+# 2. Run ML tests
+uv run pytest ml/tests/
 
-# Dashboard
+# 3. Start the API server
+uv run --package nids-api uvicorn app.main:app --reload
+
+# 4. Start Dashboard
 cd web
 npm install
 npm run dev

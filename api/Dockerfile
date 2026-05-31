@@ -11,11 +11,13 @@ RUN apt-get update && \
 # Copy only dependency spec first for layer caching
 COPY pyproject.toml ./
 
-# Install production dependencies into a virtual env
-RUN python -m venv /opt/venv
+# Install production dependencies using uv
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+RUN uv venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir .
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv pip compile pyproject.toml -o requirements.txt && \
+    uv pip install --no-cache -r requirements.txt
 
 # ── Runtime stage ─────────────────────────────────────────────────────────────
 FROM python:3.12-slim AS runtime

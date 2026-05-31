@@ -58,11 +58,9 @@ api/
 
 ### Install
 
+From the project root directory, synchronize all workspace dependencies (which sets up a unified `.venv/` virtual environment):
 ```bash
-cd api
-python -m venv .venv
-source .venv/bin/activate   # Windows: .venv\Scripts\activate
-pip install -e ".[dev]"
+uv sync
 ```
 
 ### Configure
@@ -82,16 +80,18 @@ alembic upgrade head
 
 ### Start the Server
 
+From the project root directory, launch the API server:
 ```bash
-uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+uv run --package nids-api uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
 API docs available at: [http://localhost:8000/docs](http://localhost:8000/docs)
 
 ### Run Tests
 
+Execute the API test suite using the `uv` environment runner from the project root:
 ```bash
-pytest -v --cov
+uv run pytest api/tests/ -v --cov
 ```
 
 Tests use an in-memory SQLite database — no external services needed.

@@ -1,0 +1,10 @@
+[project]
+name = "the-autistic-nids"
+version = "0.1.0"
+description = "Monorepo workspace for TheAutisticNIDS — Network Intrusion Detection System"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[tool.uv]
+workspace = { members = ["ml", "api"] }
